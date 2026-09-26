@@ -57,4 +57,29 @@ public class JobService {
             System.out.println("Posted by: " + job.getPostedBy());
         }
     }
+
+    public void applyforJob(Scanner scanner, String applicantName){
+        // Implementation for applying to jobs
+         if(jobs.isEmpty()){
+            System.out.println("No jobs available to apply.");
+            return;
+         }
+
+        System.out.println("\n--- Apply for a Job ---");
+        System.out.print("Enter the Job ID you want to apply for: ");
+        String jobId = scanner.nextLine();  
+
+
+        if (jobId == null || jobId.isEmpty()) {
+            System.out.println("Invalid Job ID. Please try again.");
+            return;
+        }
+
+        System.out.println("\n✓ Application submitted successfully!");
+        System.out.println("Applicant Name: " + applicantName);       
+        System.out.println("Applied for Job ID: " + jobId);
+        
+
+
+    }
 }

@@ -7,6 +7,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
 
         String recruiterName = "John Doe";
+        String applicantName = "Jane Smith";
 
         while (true) {
             displayMenu();
@@ -24,6 +25,10 @@ public class Main {
             else if (choice == 0) {
                 System.out.println("\nThank you for using Job Recruitment Platform. Goodbye!");
                 break;
+            }else if (choice == 3) {
+                System.out.println("\nApply for jobs");
+                jobService.applyforJob(scanner, applicantName);
+                break;
             }
             else {
                 System.out.println("Invalid choice. Please try again.");
@@ -37,6 +42,7 @@ public class Main {
         System.out.println("\n===== Job Recruitment Platform =====");
         System.out.println("1. Post a Job");
         System.out.println("2. View All Jobs");
+        System.out.println("3. Apply for a Job");
         System.out.println("0. Exit");
     }
 }
