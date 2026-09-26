@@ -68,11 +68,38 @@ public class JobService {
             System.out.println("No jobs available to apply.");
             return;
          }
+        
+
+        System.out.println("\n--- Available Jobs Count : " + jobs.size() );
+         for (Job job : jobs) {
+            System.out.println("\nJob ID: " + job.getJobId());
+            System.out.println("Title: " + job.getTitle());
+            System.out.println("Description: " + job.getDescription());
+            System.out.println("Required Skills: " + job.getRequiredSkills());
+            System.out.println("Salary: $" + job.getSalary());
+            System.out.println("Status: " + job.getStatus());
+            System.out.println("Posted by: " + job.getPostedBy());
+        } 
+
+
 
         System.out.println("\n--- Apply for a Job ---");
         System.out.print("Enter the Job ID you want to apply for: ");
         String jobId = scanner.nextLine();  
 
+
+       //check if the jobid exists in the jobs list
+
+      Job jobExists = jobs.stream()
+            .filter(job  -> job.getJobId().equals(jobId))
+            .findFirst()
+            .orElse(null);
+      
+
+      if(jobExists == null){
+        System.out.println("Job ID not found. Please try again.");
+        return;
+      }
 
         if (jobId == null || jobId.isEmpty()) {
             System.out.println("Invalid Job ID. Please try again.");
