@@ -5,12 +5,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.HashMap;
+import model.Application;
 
 public class JobService {
     private List<Job> jobs;
+    private HashMap<String, Application> applicants; 
 
     public JobService() {
         this.jobs = new ArrayList<>();
+        this.applicants = new HashMap<>();
     }
 
     public void postJob(Scanner scanner, String recruiterName) {
@@ -75,11 +79,30 @@ public class JobService {
             return;
         }
 
+        Application application = new Application(applicantName, jobId);
+        applicants.put(applicantName, application);
+        application.setStatus("Submitted");
+        System.out.println("\n✓ Application submitted successfully into our Database!");
+        
         System.out.println("\n✓ Application submitted successfully!");
         System.out.println("Applicant Name: " + applicantName);       
         System.out.println("Applied for Job ID: " + jobId);
         
+    }
 
+    public void viewAllApplicants() {
+        System.out.println("\n--- All Applicants ---");
 
+        if (applicants.isEmpty()) {
+            System.out.println("No applicants available.");
+            return;
+        }
+
+        for (String applicantName : applicants.keySet()) {
+            String jobId = applicants.get(applicantName).getJobId();
+            System.out.println("\nApplicant Name: " + applicantName);
+            System.out.println("Applied for Job ID: " + jobId);
+            System.out.println("Application Status: " + applicants.get(applicantName).getStatus());
+        }
     }
 }

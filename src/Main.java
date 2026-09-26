@@ -29,6 +29,10 @@ public class Main {
                 System.out.println("\nApply for jobs");
                 jobService.applyforJob(scanner, applicantName);
                 break;
+            }else if (choice == 4) {
+                System.out.println("\nView all applicants");
+                jobService.viewAllApplicants();
+                break;
             }
             else {
                 System.out.println("Invalid choice. Please try again.");
@@ -43,6 +47,7 @@ public class Main {
         System.out.println("1. Post a Job");
         System.out.println("2. View All Jobs");
         System.out.println("3. Apply for a Job");
+        System.out.println("4. View All Applicants");
         System.out.println("0. Exit");
     }
 }
