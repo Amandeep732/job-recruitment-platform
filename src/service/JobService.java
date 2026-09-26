@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.HashMap;
 import model.Application;
+import exception.JobNotFoundException;
 
 public class JobService {
     private List<Job> jobs;
@@ -62,7 +63,7 @@ public class JobService {
         }
     }
 
-    public void applyforJob(Scanner scanner, String applicantName){
+    public void applyforJob(Scanner scanner, String applicantName) throws JobNotFoundException {
         // Implementation for applying to jobs
          if(jobs.isEmpty()){
             System.out.println("No jobs available to apply.");
@@ -97,8 +98,7 @@ public class JobService {
       
 
       if(jobExists == null){
-        System.out.println("Job ID not found. Please try again.");
-        return;
+        throw new JobNotFoundException("Job with ID " + jobId + " not found. Please enter a valid Job ID.");
       }
 
         if (jobId == null || jobId.isEmpty()) {

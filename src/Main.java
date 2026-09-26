@@ -1,4 +1,5 @@
 import service.JobService;
+import exception.JobNotFoundException;
 import java.util.Scanner;
 
 public class Main {
@@ -27,7 +28,11 @@ public class Main {
                 break;
             }else if (choice == 3) {
                 System.out.println("\nApply for jobs");
-                jobService.applyforJob(scanner, applicantName);
+                try {
+                    jobService.applyforJob(scanner, applicantName);
+                } catch (JobNotFoundException e) {
+                    System.out.println("\n✗ Error: " + e.getMessage());
+                }
             }else if (choice == 4) {
                 System.out.println("\nView all applicants");
                 jobService.viewAllApplicants();
